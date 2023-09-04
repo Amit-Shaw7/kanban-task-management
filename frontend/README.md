@@ -1,13 +1,13 @@
 
 <h1 align="center">
   <br>
-  <a href="http://www.amitmerchant.com/electron-markdownify"><img src="https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.png" alt="Markdownify" width="200"></a>
+  <a href="https://managet.vercel.app/"><img src="https://res.cloudinary.com/amitkumarshaw/image/upload/v1693855024/Logo_citpy5.png" alt="managet" width="200"></a>
   <br>
-  Markdownify
+  Managet
   <br>
 </h1>
 
-<h4 align="center">A minimal Markdown Editor desktop app built on top of <a href="http://electron.atom.io" target="_blank">Electron</a>.</h4>
+<h4 align="center">A task management tool built using MERN Stack</h4>
 
 <p align="center">
   <a href="https://badge.fury.io/js/electron-markdownify">
@@ -36,23 +36,16 @@
 
 ## Key Features
 
-* LivePreview - Make changes, See changes
-  - Instantly see what your Markdown documents look like in HTML as you create them.
-* Sync Scrolling
-  - While you type, LivePreview will automatically scroll to the current location you're editing.
-* GitHub Flavored Markdown  
-* Syntax highlighting
-* [KaTeX](https://khan.github.io/KaTeX/) Support
-* Dark/Light mode
-* Toolbar for basic Markdown formatting
-* Supports multiple cursors
-* Save the Markdown preview as PDF
-* Emoji support in preview :tada:
-* App will keep alive in tray for quick usage
-* Full screen mode
-  - Write distraction free.
-* Cross platform
-  - Windows, macOS and Linux ready.
+
+* Complete user authentication.  
+* Create a task.
+* Edit task
+* Delete task.
+* Change status of task (todo , doing , done) using easy drag and drop.
+* Dark / Light mode toggle.
+* Emoji support.
+* Fully responsive.
+
 
 ## How To Use
 
@@ -60,60 +53,79 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/amitmerchant1990/electron-markdownify
+$ git clone https://github.com/Amit-Shaw7/kanban-task-management.git
 
-# Go into the repository
-$ cd electron-markdownify
+# Go into the frontend
+$ cd frontend
 
 # Install dependencies
 $ npm install
 
+# Create a .env file
+# Open the .env file and 
+## create a variable PORT with value 3000
+## create a variable REACT_APP_BACKEND_URI with value http://localhost:5000
+
+# Come back to previous path
+$ cd ..
+
+# Go into the backend
+$ cd backend
+
+# Install dependencies
+$ npm install
+
+# Create a .env file.
+# Open the .env file and
+## create a variable MONGO_URI with value your mongodb database connection uri.
+## create a variable JWT_SECRET_KEY with value some strong string. 
+## create a variable PORT with value 5000.
+
+# Come back to previous path
+$ cd ..
+
 # Run the app
-$ npm start
+
+## Go into the backend
+$ cd backend
+$ npm run start
+
+# Come back to previous path
+$ cd .. 
+
+## Go into the frontend
+$ cd frontend
+$ npm run start
 ```
 
-> **Note**
-> If you're using Linux Bash for Windows, [see this guide](https://www.howtogeek.com/261575/how-to-run-graphical-linux-desktop-applications-from-windows-10s-bash-shell/) or use `node` from the command prompt.
-
-
-## Download
-
-You can [download](https://github.com/amitmerchant1990/electron-markdownify/releases/tag/v1.2.0) the latest installable version of Markdownify for Windows, macOS and Linux.
-
-## Emailware
-
-Markdownify is an [emailware](https://en.wiktionary.org/wiki/emailware). Meaning, if you liked using this app or it has helped you in any way, I'd like you send me an email at <bullredeyes@gmail.com> about anything you'd want to say about this software. I'd really appreciate it!
 
 ## Credits
 
-This software uses the following open source packages:
+This web app uses the following technologies:
 
-- [Electron](http://electron.atom.io/)
 - [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-- [showdown](http://showdownjs.github.io/showdown/)
-- [CodeMirror](http://codemirror.net/)
-- Emojis are taken from [here](https://github.com/arvida/emoji-cheat-sheet.com)
-- [highlight.js](https://highlightjs.org/)
+- [React.js ](https://react.dev/)
+- [MongoDB - a database](https://www.mongodb.com/)
+- [Tailwin Css](https://tailwindcss.com/)
+
+This web app uses the following important npm packages:
+
+- [express.js](https://expressjs.com//)
+- [mongoose ](https://mongoosejs.com/)
+- [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [jsonwebtoken](https://jwt.io/)
+- [dotenv](https://www.npmjs.com/package/dotenv)
+- [react-beautiful-dnd - for drag and drop feature](https://www.npmjs.com/package/react-beautiful-dnd)
 
 ## Related
 
-[markdownify-web](https://github.com/amitmerchant1990/markdownify-web) - Web version of Markdownify
+[managet](https://managet.vercel.app/) - Deployed version of managet
 
-## Support
-
-<a href="https://www.buymeacoffee.com/5Zn8Xh3l9" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-
-<p>Or</p> 
-
-<a href="https://www.patreon.com/amitmerchant">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
-</a>
 
 ## You may also like...
 
-- [Pomolectron](https://github.com/amitmerchant1990/pomolectron) - A pomodoro app
-- [Correo](https://github.com/amitmerchant1990/correo) - A menubar/taskbar Gmail App for Windows and macOS
+- [Yt Clone](https://github.com/Amit-Shaw7/yt-clone-frontend) - A youtube clone.
+- [Pijja](https://github.com/Amit-Shaw7/pizzaApp---Frontend) - A dummy pizza ordering webapp
 
 ## License
 
@@ -121,7 +133,7 @@ MIT
 
 ---
 
-> [amitmerchant.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
-> GitHub [@amitmerchant1990](https://github.com/amitmerchant1990) &nbsp;&middot;&nbsp;
-> Twitter [@amit_merchant](https://twitter.com/amit_merchant)
+> [Amit Shaw](https://amitshaw.vercel.app) &nbsp;&middot;&nbsp;
+> GitHub [Amit-Shaw7](https://github.com/Amit-Shaw7) &nbsp;&middot;&nbsp;
+> LinkedIn [amit-shaw-a95121230](https://www.linkedin.com/in/amit-shaw-a95121230/)
 
