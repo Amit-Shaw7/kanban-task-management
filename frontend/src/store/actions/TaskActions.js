@@ -80,12 +80,12 @@ export const editTask = (data, id, status) => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
     const url = `/task/${id}`;
+    dispatch({ type: "DELETE_TASK_SUCCESS", payload: id });
     try {
         const response = await instance.delete(url);
-        if (response.status === 200) {
-            dispatch({ type: "DELETE_TASK_SUCCESS", payload: id });
-        } else {
+        if (response.status !== 200) {
             toast.error(response.data.msg);
+            window.location.reload();
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
