@@ -68,9 +68,9 @@ const Task = ({ index, task }) => {
                 <p className='text-sm'>{task?.description}</p>
               </div>
               {showAcion && <div className='flex  absolute top-2 right-1 gap-1'>
-                {task?.status !== "Todo" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-lg text-red cursor-pointer' />}
-                {task?.status !== "Doing" && <MdUpdate onClick={() => changeStatus("Doing")} className='flex md:hidden text-lg text-yellow cursor-pointer' />}
-                {task?.status !== "Done" && <MdDone onClick={() => changeStatus("Done")} className='flex md:hidden text-lg text-green cursor-pointer' />}
+                {task?.status !== "Done" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-lg text-red cursor-pointer' />}
+                {task?.status !== "Todo" && <MdUpdate onClick={() => changeStatus("Doing")} className='flex md:hidden text-lg text-yellow cursor-pointer' />}
+                {task?.status !== "Doing" && <MdDone onClick={() => changeStatus("Done")} className='flex md:hidden text-lg text-green cursor-pointer' />}
                 <MdEdit onClick={() => setOpen(true)} className='text-lg cursor-pointer text-blue' />
                 <MdDelete onClick={handleDelete} className='text-lg cursor-pointer text-red' />
               </div>}

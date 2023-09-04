@@ -12,7 +12,7 @@ module.exports = {
       "blue" : "#18a9ea",
       "red" : "#FF6969",
       "green" : "#5B9A8B",
-      "yellow" : "#FD8D14",
+      "yellow" : "#FFC436",
       "gray" : "#D8D9DA",
       "dark" : "#0f172a",
       "dark-card" : "#1e293b",
