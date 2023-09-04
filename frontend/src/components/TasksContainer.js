@@ -1,8 +1,20 @@
 import React from 'react'
 import Task from './Task'
 import { Droppable } from 'react-beautiful-dnd';
+import TaskSkelleton from './TaskSkelleton';
 
 const TasksContainer = ({ status, tasks }) => {
+
+    if (!tasks) {
+        return (
+            <div className='w-full h-full flex flex-col justify-start gap-2'>
+                <TaskSkelleton />
+                <TaskSkelleton />
+                <TaskSkelleton />
+            </div>
+        )
+    }
+
     return (
         <Droppable droppableId={status}>
             {(provided) => (

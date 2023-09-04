@@ -14,7 +14,7 @@ export const getTodo = () => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 export const getDoing = () => async (dispatch) => {
@@ -29,7 +29,7 @@ export const getDoing = () => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 export const getDone = () => async (dispatch) => {
@@ -45,7 +45,7 @@ export const getDone = () => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 
@@ -59,22 +59,21 @@ export const addTask = (data) => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
         return false;
     }
 }
 
-export const editTask = (data, id) => async (dispatch) => {
+export const editTask = (data, id, status) => async (dispatch) => {
     const url = `/task/${id}`;
     try {
         const response = await instance.patch(url, data);
-        if (response.status === 200) {
-            dispatch({ type: "EDIT_TASK_SUCCESS", payload: { data, id } });
-        } else {
+        dispatch({ type: "EDIT_TASK_SUCCESS", payload: { data, id, status } });
+        if (response.status !== 200) {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
         return false;
     }
 }
@@ -89,7 +88,7 @@ export const deleteTask = (id) => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 export const deleteDoing = (id) => async (dispatch) => {
@@ -102,7 +101,7 @@ export const deleteDoing = (id) => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 export const deleteDone = (id) => async (dispatch) => {
@@ -115,7 +114,7 @@ export const deleteDone = (id) => async (dispatch) => {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 
@@ -127,15 +126,18 @@ export const changeTaskStatus = (data) => async (dispatch) => {
         draggedTaskId: data.draggedTaskId,
         index: data.index
     }
+    toast.loading(`Moving to ${data.toStatus}`);
+
     try {
         const response = await instance.patch(url, dataToSend);
         if (response.status === 200) {
-            toast.success("Swapped");
+            toast.dismiss()
+            toast.success(`Moved to ${data.toStatus}`);
         } else {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 
@@ -151,6 +153,8 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "DELETE_DONE_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
+    toast.loading(`Moving to ${data.toStatus}`);
+
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.task._id,
@@ -159,12 +163,13 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     try {
         const response = await instance.patch(url, dataToSend);
         if (response.status === 200) {
-            toast.success("Swapped");
+            toast.dismiss();
+            toast.success(`Moved to ${data.toStatus}`);
         } else {
             toast.error(response.data.msg);
         }
     } catch (error) {
-        toast.success(error?.response?.data?.msg);
+        toast.error(error?.response?.data?.msg);
     }
 }
 
@@ -176,10 +181,13 @@ export const swapTaskIndex = (data) => async (dispatch) => {
         draggedId: data.draggedId,
         droppedId: data.droppedId,
     }
+    toast.loading("Re-arranging tasks");
     try {
         const response = await instance.patch(url, dataToSend);
         if (response.status === 200) {
-            toast.success("Swapped");
+            // toast.success("Swapped");
+            toast.dismiss();
+            toast.success("Re-arranged tasks");
         } else {
             toast.error(response.data.msg);
         }

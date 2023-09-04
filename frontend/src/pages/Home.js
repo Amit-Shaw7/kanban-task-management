@@ -9,10 +9,7 @@ import Navbar from '../components/Navbar';
 import AddTaskBtn from '../components/AddTaskBtn';
 
 const checkLogin = async (dispatch, navigate) => {
-  const loggedIn = await dispatch(loadUser());
-  if (!loggedIn) {
-    navigate("/login");
-  }
+  dispatch(loadUser(navigate));
 };
 
 const Home = () => {
@@ -142,11 +139,11 @@ const Home = () => {
       <Navbar />
       <DragDropContext onDragEnd={handleDragEnd}>
         <div className='hidden md:grid grid-cols-3 py-2 px-12 w-full'>
-            <Board tasks={todo} status="Todo" color="red" />
+          <Board tasks={todo} status="Todo" color="red" />
 
-            <Board tasks={doing} status="Doing" color="yellow" />
+          <Board tasks={doing} status="Doing" color="yellow" />
 
-            <Board tasks={done} status="Done" color="green" />
+          <Board tasks={done} status="Done" color="green" />
         </div>
 
         <div className='grid md:hidden gap-4 px-6 w-full'>

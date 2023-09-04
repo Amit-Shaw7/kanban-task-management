@@ -1,16 +1,13 @@
 import { toast } from 'react-hot-toast';
 import instance from '../../utils/axiosInstance';
 
-export const signup = async (data, navigate) => {
-    console.log(data);
+export const signup = async (data, navigate) =>  {
     const url = "/auth/register";
     let response = {};
     try {
         response = await instance.post(url, data);
-        console.log(response);
     } catch (error) {
         toast.error(error?.response?.data?.msg?.split("_").join(" "));
-        // console.log(error?.response?.data?.msg?.split("_").join(" "));
     } finally {
         if (response?.status === 200) {
             navigate("/login");
@@ -31,6 +28,7 @@ export const login = (data, navigate) => async (dispatch) => {
             navigate("/");
         }
     } catch (error) {
+        dispatch({ type: "STOP_LOADER" });
         toast.error(error?.response?.data?.msg?.split("_").join(" "));
     }
 }
@@ -41,6 +39,7 @@ export const logout = (navigate) => async (dispatch) => {
         const response = await instance.get(url);
 
         if (response.status === 200) {
+            toast.dismiss();
             toast.success("Logged out successfully");
             dispatch({ type: "LOGOUT_SUCCESS" });
             navigate("/login");
@@ -51,22 +50,20 @@ export const logout = (navigate) => async (dispatch) => {
         toast.success("Something wrong")
     }
 }
-export const loadUser = () => async (dispatch) => {
-    dispatch({ type: "LOAD_USER_REQUEST" });
+export const loadUser = (navigate) => async (dispatch) => {
     const url = `/user/profile`;
     try {
         const response = await instance.get(url);
 
         if (response.status === 200) {
             dispatch({ type: "LOAD_USER_SUCCESS", payload: response?.data?.user });
-            return true;
+            return;
         } else {
-            dispatch({ type: "LOAD_USER_FAILURE" });
-            toast.error(response.data.msg);
-            return false;
+            navigate("/login");
+            return;
         }
     } catch (error) {
-        // toast.success(error?.response?.data?.msg);
-        return false;
+       navigate("/login");
+       return;
     }
 }
