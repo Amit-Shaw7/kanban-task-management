@@ -14,7 +14,8 @@ const Header = ({ mode, handleDarkMode, name }) => {
             <div className='w-full relative flex flex-row items-center justify-between px-10 '>
                 <Link to={name ? "/" : "/login"}>
                     <div className='flex items-center'>
-                    <img height="55px" width="50px" src="./assets/Logo-light.png" alt="" />
+                        {mode === "light" && <img height="55px" width="50px" src="./assets/Logo-light.png" alt="" />}
+                        {mode === "dark" && <img height="55px" width="50px" src="./assets/Logo-dark.png" alt="" />}
                     </div>
                 </Link>
 
