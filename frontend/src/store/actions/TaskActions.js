@@ -142,6 +142,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         toast.error(error?.response?.data?.msg);
     } finally {
         if (response.status === 200) {
+            toast.dismiss();
             toast.success(`Moved to ${data.toStatus}`);
         } else {
             window.location.reload();
