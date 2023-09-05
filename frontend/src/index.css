@@ -31,3 +31,7 @@ body {
     background: lightgray;
     border-radius: 0px;
 }
+
+textarea{
+    height: max-content;
+}

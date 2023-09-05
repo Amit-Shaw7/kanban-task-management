@@ -142,7 +142,7 @@ const Home = () => {
           window.innerWidth > 768
 
             ?
-            <div className='hidden md:flex py-2 px-12 w-full'>
+            <div className='grid grid-cols-3 py-2 px-12 w-full'>
               <Board tasks={todo} status="Todo" color="red" />
 
               <Board tasks={doing} status="Doing" color="yellow" />
@@ -152,7 +152,7 @@ const Home = () => {
 
             :
 
-            <div className='grid md:hidden gap-4 px-6 w-full'>
+            <div className='grid gap-4 px-6 w-full'>
               {taskType === "Todo" && <div className='w-full'>
                 <Board tasks={todo} status="Todo" color="red" />
               </div>}

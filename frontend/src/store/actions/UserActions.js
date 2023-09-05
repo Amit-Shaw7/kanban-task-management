@@ -1,15 +1,18 @@
 import { toast } from 'react-hot-toast';
 import instance from '../../utils/axiosInstance';
 
-export const signup = async (data, navigate) =>  {
+export const signup = (data, navigate) => async (dispatch) => {
+    dispatch({ type: "START_LOADER" });
     const url = "/auth/register";
     let response = {};
     try {
         response = await instance.post(url, data);
     } catch (error) {
+        dispatch({ type: "STOP_LOADER" });
         toast.error(error?.response?.data?.msg?.split("_").join(" "));
     } finally {
         if (response?.status === 200) {
+            dispatch({ type: "STOP_LOADER" });
             navigate("/login");
             toast.success("Signup Succesfull");
         }
@@ -17,53 +20,55 @@ export const signup = async (data, navigate) =>  {
 }
 
 export const login = (data, navigate) => async (dispatch) => {
+    // setLoading(true);
     dispatch({ type: "START_LOADER" });
     const url = `/auth/login`;
+    let response = {};
     try {
-        const response = await instance.post(url, data);
-
+        response = await instance.post(url, data);
+    } catch (error) {
+        // setLoading(false);
+        dispatch({ type: "STOP_LOADER" });
+        toast.error(error?.response?.data?.msg?.split("_").join(" "));
+    } finally {
         if (response.status === 200) {
+            dispatch({ type: "STOP_LOADER" });
+            // setLoading(false);
             toast.success("Login successfull");
             dispatch({ type: "LOGIN_SUCCESS", payload: response?.data?.user });
             navigate("/");
         }
-    } catch (error) {
-        dispatch({ type: "STOP_LOADER" });
-        toast.error(error?.response?.data?.msg?.split("_").join(" "));
     }
 }
-export const logout = (navigate) => async (dispatch) => {
-    dispatch({ type: "START_LOADER" });
-    const url = `/auth/logout`;
-    try {
-        const response = await instance.get(url);
 
+export const logout = (navigate) => async (dispatch) => {
+    const url = `/auth/logout`;
+    let response = {};
+    try {
+        response = await instance.get(url);
+    } catch (error) {
+        toast.success("Something wrong please try again");
+    } finally {
         if (response.status === 200) {
             toast.dismiss();
-            toast.success("Logged out successfully");
             dispatch({ type: "LOGOUT_SUCCESS" });
+            toast.success("Logged out successfully");
             navigate("/login");
-        } else {
-            toast.error(response.data.msg);
         }
-    } catch (error) {
-        toast.success("Something wrong")
     }
 }
 export const loadUser = (navigate) => async (dispatch) => {
     const url = `/user/profile`;
+    let response = {};
     try {
-        const response = await instance.get(url);
-
+        response = await instance.get(url);
+    } catch (error) {
+        navigate("/login");
+    } finally {
         if (response.status === 200) {
             dispatch({ type: "LOAD_USER_SUCCESS", payload: response?.data?.user });
-            return;
         } else {
             navigate("/login");
-            return;
         }
-    } catch (error) {
-       navigate("/login");
-       return;
     }
 }

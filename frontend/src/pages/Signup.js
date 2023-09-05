@@ -7,24 +7,24 @@ import { signup } from "../store/actions/UserActions";
 import { Link, useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const schema = yup.object({
   name: yup.string().required("Name is required"),
   email: yup.string().email("Please enter a valid email").required("Email is required"),
-  password: yup.string().required("Please enter your required"),
+  password: yup.string().required("Please enter your required").min(6),
 }).required();
 
 export default function Signup() {
-  const navigate = useNavigate()
+  const {loading} = useSelector(state => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: yupResolver(schema)
   });
 
-  const [loading, setLoading] = useState(false);
   const onSubmit = async (data) => {
-    setLoading(true);
-    await signup(data, navigate);
-    setLoading(false);
+    await dispatch(signup(data, navigate));
   };
 
   return (

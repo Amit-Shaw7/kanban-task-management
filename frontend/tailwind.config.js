@@ -17,7 +17,8 @@ module.exports = {
       "dark" : "#0f172a",
       "dark-card" : "#1e293b",
       "light" : "#f8fafc",
-      "light-card" : "#ffffff"
+      "light-card" : "#ffffff",
+      "transparent" : "transparent"
     }
   },
   plugins: [],

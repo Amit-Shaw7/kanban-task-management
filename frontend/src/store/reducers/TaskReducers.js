@@ -39,21 +39,8 @@ export const TaskReducer = createReducer(initialState, {
 
     DELETE_TASK_SUCCESS: (state, action) => {
         state.todo = state.todo.filter((todo) => todo._id !== action.payload);
-        console.log("Todo");
-        console.log(action.payload);
-        console.log(state.todo);
-    },
-    DELETE_DOING_SUCCESS: (state, action) => {
         state.doing = state.doing.filter((todo) => todo._id !== action.payload);
-        console.log("Doing");
-        console.log(action.payload);
-        console.log(state.doing);
-    },
-    DELETE_DONE_SUCCESS: (state, action) => {
         state.done = state.done.filter((todo) => todo._id !== action.payload);
-        console.log("Doing");
-        console.log(action.payload);
-        console.log([...state.doing]);
     },
 
     FETCH_TODO_REQUEST: (state) => {

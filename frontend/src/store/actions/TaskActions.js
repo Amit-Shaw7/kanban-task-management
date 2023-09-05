@@ -4,79 +4,76 @@ import instance from '../../utils/axiosInstance';
 export const getTodo = () => async (dispatch) => {
     dispatch({ type: "FETCH_TODO_REQUEST" });
     const url = `/task/todo`;
+    let response = {};
     try {
-        const response = await instance.get(url);
-        if (response.status === 200) {
-            dispatch({ type: "FETCH_TODO_SUCCESS", payload: response?.data?.tasks });
-
-        } else {
-            dispatch({ type: "FETCH_TODO_FAILURE" });
-            toast.error(response.data.msg);
-        }
+        response = await instance.get(url);
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response.status === 200) {
+            dispatch({ type: "FETCH_TODO_SUCCESS", payload: response?.data?.tasks });
+        }
     }
-}
+};
+
 export const getDoing = () => async (dispatch) => {
     dispatch({ type: "FETCH_DOING_REQUEST" });
     const url = `/task/doing`;
+    let response = {};
     try {
-        const response = await instance.get(url);
-        if (response.status === 200) {
-            dispatch({ type: "FETCH_DOING_SUCCESS", payload: response?.data?.tasks });
-        } else {
-            dispatch({ type: "FETCH_DOING_FAILURE" });
-            toast.error(response.data.msg);
-        }
+        response = await instance.get(url);
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response.status === 200) {
+            dispatch({ type: "FETCH_DOING_SUCCESS", payload: response?.data?.tasks });
+        }
     }
-}
+};
+
 export const getDone = () => async (dispatch) => {
     dispatch({ type: "FETCH_DONE_REQUEST" });
     const url = `/task/done`;
+    let response = {};
     try {
-        const response = await instance.get(url);
-        if (response.status === 200) {
-            dispatch({ type: "FETCH_DONE_SUCCESS", payload: response?.data?.tasks });
-
-        } else {
-            dispatch({ type: "FETCH_DONE_FAILURE" });
-            toast.error(response.data.msg);
-        }
+        response = await instance.get(url);
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response.status === 200) {
+            dispatch({ type: "FETCH_DONE_SUCCESS", payload: response?.data?.tasks });
+        }
     }
 }
 
 export const addTask = (data) => async (dispatch) => {
     const url = `/task/add`;
     toast.loading("Adding your task");
+    let response = {};
     try {
-        const response = await instance.post(url, data);
+        response = await instance.post(url, data);
+    } catch (error) {
+        toast.dismiss();
+        toast.error(error?.response?.data?.msg);
+    } finally {
         if (response.status === 200) {
             toast.dismiss();
             dispatch({ type: "ADD_TASK_SUCCESS", payload: response?.data?.task });
-        } else {
-            toast.error(response.data.msg);
         }
-    } catch (error) {
-        toast.error(error?.response?.data?.msg);
-        return false;
     }
 }
 
 export const editTask = (data, id, status) => async (dispatch) => {
     const url = `/task/${id}`;
+    dispatch({ type: "EDIT_TASK_SUCCESS", payload: { data, id, status } });
     try {
         const response = await instance.patch(url, data);
-        dispatch({ type: "EDIT_TASK_SUCCESS", payload: { data, id, status } });
         if (response.status !== 200) {
             toast.error(response.data.msg);
+            window.location.reload();
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
-        return false;
     }
 }
 
@@ -93,62 +90,35 @@ export const deleteTask = (id) => async (dispatch) => {
         toast.error(error?.response?.data?.msg);
     }
 }
-export const deleteDoing = (id) => async (dispatch) => {
-    const url = `/task/${id}`;
-    dispatch({ type: "DELETE_DOING_SUCCESS", payload: id });
-    try {
-        const response = await instance.delete(url);
-        if (response.status !== 200) {
-            toast.error(response.data.msg);
-            window.location.reload();
-        } else {
-            toast.error(response.data.msg);
-        }
-    } catch (error) {
-        toast.error(error?.response?.data?.msg);
-    }
-}
-export const deleteDone = (id) => async (dispatch) => {
-    const url = `/task/${id}`;
-    dispatch({ type: "DELETE_DONE_SUCCESS", payload: id });
-    try {
-        const response = await instance.delete(url);
-        if (response.status !== 200) {
-            toast.error(response.data.msg);
-            window.location.reload();
-        } else {
-            toast.error(response.data.msg);
-        }
-    } catch (error) {
-        toast.error(error?.response?.data?.msg);
-    }
-}
 
 export const changeTaskStatus = (data) => async (dispatch) => {
-    dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
     const url = `/task/changeStatus`;
+    let response = {};
+
+    dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
+    toast.success(`Moved to ${data.toStatus}`);
+
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.draggedTaskId,
         index: data.index
     }
-    toast.loading(`Moving to ${data.toStatus}`);
 
     try {
-        const response = await instance.patch(url, dataToSend);
-        if (response.status === 200) {
-            toast.dismiss()
-            toast.success(`Moved to ${data.toStatus}`);
-        } else {
-            toast.error(response.data.msg);
-        }
+        response = await instance.patch(url, dataToSend);
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response.status === 200) {
+            toast.dismiss()
+        }
     }
 }
 
 export const changeTaskStatusForMobile = (data) => async (dispatch) => {
+    toast.loading(`Moving to ${data.toStatus}`);
     const url = `/task/changeStatus`;
+    let response = {};
     if (data.toStatus === "Doing") {
         dispatch({ type: "DELETE_TASK_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_DOING", payload: data.task });
@@ -159,7 +129,9 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "DELETE_DONE_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
-    toast.loading(`Moving to ${data.toStatus}`);
+
+    toast.dismiss();
+    toast.success(`Moved to ${data.toStatus}`);
 
     const dataToSend = {
         toStatus: data.toStatus,
@@ -167,37 +139,39 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         index: data.index
     }
     try {
-        const response = await instance.patch(url, dataToSend);
-        if (response.status === 200) {
-            toast.dismiss();
-            toast.success(`Moved to ${data.toStatus}`);
-        } else {
-            toast.error(response.data.msg);
-        }
+        response = await instance.patch(url, dataToSend);
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+    } finally {
+        if (response.status !== 200) {
+            toast.dismiss();
+        } else {
+            window.location.reload();
+        }
     }
 }
 
 export const swapTaskIndex = (data) => async (dispatch) => {
-    console.log(data.tasks);
-    dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
     const url = `/task/swap`;
+    let response = {};
+
+    dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
+
     const dataToSend = {
         draggedId: data.draggedId,
         droppedId: data.droppedId,
     }
+
     toast.loading("Re-arranging tasks");
     try {
-        const response = await instance.patch(url, dataToSend);
+        response = await instance.patch(url, dataToSend);
+    } catch (error) {
+        toast.success(error?.response?.data?.msg);
+    } finally {
         if (response.status === 200) {
             // toast.success("Swapped");
             toast.dismiss();
             toast.success("Re-arranged tasks");
-        } else {
-            toast.error(response.data.msg);
         }
-    } catch (error) {
-        toast.success(error?.response?.data?.msg);
     }
 }

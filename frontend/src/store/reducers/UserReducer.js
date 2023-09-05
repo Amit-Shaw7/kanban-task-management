@@ -25,6 +25,6 @@ export const UserReducer = createReducer(initialState, {
         state.loading = true;
     },
     STOP_LOADER: (state) => {
-        state.loading = true;
+        state.loading = false;
     },
 });

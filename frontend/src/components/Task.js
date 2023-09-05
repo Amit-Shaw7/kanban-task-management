@@ -3,7 +3,7 @@ import { MdDelete, MdDone, MdEdit, MdMoreVert, MdStopCircle, MdUpdate } from "re
 import Card from './Card';
 import Modal from './Modal';
 import { useDispatch } from 'react-redux';
-import { changeTaskStatusForMobile, deleteDoing, deleteDone, deleteTask } from '../store/actions/TaskActions';
+import { changeTaskStatusForMobile, deleteTask } from '../store/actions/TaskActions';
 import { Draggable } from 'react-beautiful-dnd';
 import { useSelector } from 'react-redux';
 
@@ -41,13 +41,7 @@ const Task = ({ index, task }) => {
   }
 
   const handleDelete = () => {
-    if (task?.status === "Todo") {
-      dispatch(deleteTask(task?._id));
-    } else if (task?.status === "Doing") {
-      dispatch(deleteDoing(task?._id));
-    } else if (task?.status === "Done") {
-      dispatch(deleteDone(task?._id));
-    }
+    dispatch(deleteTask(task?._id));
   }
 
   return (
@@ -63,9 +57,12 @@ const Task = ({ index, task }) => {
             className='flex relative h-max w-full p-1'
           >
             <Card>
-              <div className='flex flex-col gap-2 dark:text-white text-black'>
+              <div className='h-max flex flex-col gap-2 dark:text-white text-black'>
                 <p className='font-bold text-md cursor-pointer'>{task?.title}</p>
-                <p className='text-sm'>{task?.description}</p>
+                <div className='min-h-[30px]'>
+                  <p className='break-normal text-sm'>{task?.description}</p>
+                  {/* <textarea className='h-fit border-none outline-none text-sm bg-light-card resize-none dark:bg-dark-card text-black dark:text-white w-full' value={task?.description}/> */}
+                </div>
               </div>
               {showAcion && <div className='flex  absolute top-2 right-1 gap-2'>
                 {task?.status === "Done" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-xl text-red cursor-pointer' />}
