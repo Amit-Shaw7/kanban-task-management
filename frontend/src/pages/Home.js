@@ -135,7 +135,7 @@ const Home = () => {
   }, [dispatch , taskType]);
 
   return (
-    <div className='dark:bg-dark bg-light mt-[60px] h-[90.5vh] md:h-[91.6vh] overflow-hidden'>
+    <div className='dark:bg-dark bg-light mt-[60px] h-[100vh] md:h-[91.6vh] overflow-hidden'>
       <Navbar />
       <DragDropContext onDragEnd={handleDragEnd}>
         {
