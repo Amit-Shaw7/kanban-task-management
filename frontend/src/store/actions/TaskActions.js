@@ -51,9 +51,11 @@ export const getDone = () => async (dispatch) => {
 
 export const addTask = (data) => async (dispatch) => {
     const url = `/task/add`;
+    toast.loading("Adding your task");
     try {
         const response = await instance.post(url, data);
         if (response.status === 200) {
+            toast.dismiss();
             dispatch({ type: "ADD_TASK_SUCCESS", payload: response?.data?.task });
         } else {
             toast.error(response.data.msg);
@@ -93,10 +95,12 @@ export const deleteTask = (id) => async (dispatch) => {
 }
 export const deleteDoing = (id) => async (dispatch) => {
     const url = `/task/${id}`;
+    dispatch({ type: "DELETE_DOING_SUCCESS", payload: id });
     try {
         const response = await instance.delete(url);
-        if (response.status === 200) {
-            dispatch({ type: "DELETE_DOING_SUCCESS", payload: id });
+        if (response.status !== 200) {
+            toast.error(response.data.msg);
+            window.location.reload();
         } else {
             toast.error(response.data.msg);
         }
@@ -106,10 +110,12 @@ export const deleteDoing = (id) => async (dispatch) => {
 }
 export const deleteDone = (id) => async (dispatch) => {
     const url = `/task/${id}`;
+    dispatch({ type: "DELETE_DONE_SUCCESS", payload: id });
     try {
         const response = await instance.delete(url);
-        if (response.status === 200) {
-            dispatch({ type: "DELETE_DONE_SUCCESS", payload: id });
+        if (response.status !== 200) {
+            toast.error(response.data.msg);
+            window.location.reload();
         } else {
             toast.error(response.data.msg);
         }

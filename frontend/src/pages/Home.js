@@ -132,33 +132,41 @@ const Home = () => {
     dispatch(getTodo());
     dispatch(getDoing());
     dispatch(getDone());
-  }, [dispatch, taskType]);
+  }, [dispatch , taskType]);
 
   return (
     <div className='dark:bg-dark bg-light mt-[60px] h-[90.5vh] md:h-[91.6vh] overflow-hidden'>
       <Navbar />
       <DragDropContext onDragEnd={handleDragEnd}>
-        <div className='hidden md:grid grid-cols-3 py-2 px-12 w-full'>
-          <Board tasks={todo} status="Todo" color="red" />
+        {
+          window.innerWidth > 768
 
-          <Board tasks={doing} status="Doing" color="yellow" />
+            ?
+            <div className='hidden md:flex py-2 px-12 w-full'>
+              <Board tasks={todo} status="Todo" color="red" />
 
-          <Board tasks={done} status="Done" color="green" />
-        </div>
+              <Board tasks={doing} status="Doing" color="yellow" />
 
-        <div className='grid md:hidden gap-4 px-6 w-full'>
-          {taskType === "Todo" && <div className='w-full'>
-            <Board tasks={todo} status="Todo" color="red" />
-          </div>}
+              <Board tasks={done} status="Done" color="green" />
+            </div>
 
-          {taskType === "Doing" && <div className='w-full'>
-            <Board tasks={doing} status="Doing" color="yellow" />
-          </div>}
+            :
 
-          {taskType === "Done" && <div className='w-full'>
-            <Board tasks={done} status="Done" color="green" />
-          </div>}
-        </div>
+            <div className='grid md:hidden gap-4 px-6 w-full'>
+              {taskType === "Todo" && <div className='w-full'>
+                <Board tasks={todo} status="Todo" color="red" />
+              </div>}
+
+              {taskType === "Doing" && <div className='w-full'>
+                <Board tasks={doing} status="Doing" color="yellow" />
+              </div>}
+
+              {taskType === "Done" && <div className='w-full'>
+                <Board tasks={done} status="Done" color="green" />
+              </div>}
+            </div>
+        }
+
       </DragDropContext>
       <AddTaskBtn />
     </div>
