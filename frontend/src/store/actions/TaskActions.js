@@ -129,7 +129,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
 
-    toast.success(`Moving to ${data.toStatus}`);
+    toast.loading(`Moving to ${data.toStatus}`);
 
     const dataToSend = {
         toStatus: data.toStatus,
