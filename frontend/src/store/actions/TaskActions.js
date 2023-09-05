@@ -116,7 +116,6 @@ export const changeTaskStatus = (data) => async (dispatch) => {
 }
 
 export const changeTaskStatusForMobile = (data) => async (dispatch) => {
-    toast.loading(`Moving to ${data.toStatus}`);
     const url = `/task/changeStatus`;
     let response = {};
     if (data.toStatus === "Doing") {
@@ -130,8 +129,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
 
-    toast.dismiss();
-    toast.success(`Moved to ${data.toStatus}`);
+    toast.success(`Moving to ${data.toStatus}`);
 
     const dataToSend = {
         toStatus: data.toStatus,
@@ -143,8 +141,8 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     } catch (error) {
         toast.error(error?.response?.data?.msg);
     } finally {
-        if (response.status !== 200) {
-            toast.dismiss();
+        if (response.status === 200) {
+            toast.success(`Moved to ${data.toStatus}`);
         } else {
             window.location.reload();
         }
