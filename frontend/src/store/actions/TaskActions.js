@@ -122,10 +122,10 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "DELETE_TASK_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_DOING", payload: data.task });
     } else if (data.toStatus === "Done") {
-        dispatch({ type: "DELETE_DOING_SUCCESS", payload: data.task?._id });
+        dispatch({ type: "DELETE_TASK_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_DONE", payload: data.task });
     } else {
-        dispatch({ type: "DELETE_DONE_SUCCESS", payload: data.task?._id });
+        dispatch({ type: "DELETE_TASK_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
 
