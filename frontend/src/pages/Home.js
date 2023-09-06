@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Board from '../components/Board';
+import React, { lazy, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { DragDropContext } from 'react-beautiful-dnd';
 import { useNavigate } from 'react-router-dom';
+import useResponsive from '../utils/useResponsive';
+
 import { loadUser } from '../store/actions/UserActions';
 import { changeTaskStatus, getDoing, getDone, getTodo, swapTaskIndex } from '../store/actions/TaskActions';
-import { DragDropContext } from 'react-beautiful-dnd';
-import Navbar from '../components/Navbar';
-import AddTaskBtn from '../components/AddTaskBtn';
-import useResponsive from '../utils/useResponsive';
+const Navbar = lazy(() => import ( '../components/Navbar'));
+const Board = lazy(() => import ( '../components/Board'));
+const AddTaskBtn = lazy(() => import ( '../components/AddTaskBtn'));
 
 const checkLogin = async (dispatch, navigate) => {
   dispatch(loadUser(navigate));

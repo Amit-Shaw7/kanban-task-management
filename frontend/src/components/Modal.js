@@ -13,7 +13,7 @@ export default function Modal({task, open, handleClose, type }) {
                             onClick={handleClose}
                         ></div>
                         <div className="flex items-center min-h-screen px-4 py-8">
-                            <div className="bg-light dark:bg-dark relative w-full max-w-lg p-4 mx-auto rounded-md shadow-sm shadow-gray">
+                            <div className="bg-light dark:bg-dark relative w-full max-w-lg p-4 mx-auto rounded-md shadow-sm shadow-gray dark:shadow-none">
                                 <MdClose onClick={handleClose} fontSize="1.1rem" className="absolute top-1 right-1 cursor-pointer text-xl text-black dark:text-white" />
                                 <TaskForm task={task} handleClose={handleClose} type={type} />
                             </div>

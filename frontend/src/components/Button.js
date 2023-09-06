@@ -3,6 +3,7 @@ import React from 'react';
 const Button = ({ name, text, onClickFn, type , fullWidth }) => {
     return (
         <button
+            aria-label={name}
             type={type}
             name={name}
             onClick={onClickFn}

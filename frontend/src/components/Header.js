@@ -12,7 +12,7 @@ const Header = ({ mode, handleDarkMode, name }) => {
     return (
         <nav className='dark:bg-dark bg-light fixed h-[60px] flex items-center w-[100vw] top-0 shadow-xl'>
             <div className='w-full relative flex flex-row items-center justify-between px-10 '>
-                <Link to={name ? "/" : "/login"}>
+                <Link target="_blank" rel="noopener" aria-label='managet' to={name ? "/" : "/login"}>
                     <div className='flex items-center'>
                         {mode === "light" && <img height="55px" width="50px" src="./assets/Logo-light.png" alt="" />}
                         {mode === "dark" && <img height="55px" width="50px" src="./assets/Logo-dark.png" alt="" />}

@@ -18,14 +18,6 @@ const Task = ({ index, task }) => {
   };
 
   const changeStatus = (toStatus) => {
-    let index;
-    if (toStatus === "Todo") {
-      index = todo[todo.length-1].index;
-    } else if (toStatus === "Doing") {
-      index = doing[doing.length-1].inex;
-    } else {
-      index = done[done.length].index;
-    }
     const data = {
       toStatus,
       task: {
@@ -58,18 +50,18 @@ const Task = ({ index, task }) => {
           >
             <Card>
               <div className='h-max flex flex-col gap-2 dark:text-white text-black'>
-                <p className='font-bold text-md cursor-pointer'>{task?.title}</p>
+                <p className='font-bold text-md cursor-pointer mt-3'>{task?.title}</p>
                 <div className='min-h-[30px]'>
                   <p className='break-normal text-sm'>{task?.description}</p>
                   {/* <textarea className='h-fit border-none outline-none text-sm bg-light-card resize-none dark:bg-dark-card text-black dark:text-white w-full' value={task?.description}/> */}
                 </div>
               </div>
               {showAcion && <div className='flex  absolute top-2 right-1 gap-2'>
-                {task?.status === "Done" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-xl text-red cursor-pointer' />}
-                {task?.status === "Todo" && <MdUpdate onClick={() => changeStatus("Doing")} className='flex md:hidden text-xl text-yellow cursor-pointer' />}
-                {task?.status === "Doing" && <MdDone onClick={() => changeStatus("Done")} className='flex md:hidden text-xl text-green cursor-pointer' />}
-                <MdEdit onClick={() => setOpen(true)} className='text-lg cursor-pointer text-blue' />
-                <MdDelete onClick={handleDelete} className='text-lg cursor-pointer text-red' />
+                {task?.status === "Done" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-2xl text-red cursor-pointer' />}
+                {task?.status === "Todo" && <MdUpdate onClick={() => changeStatus("Doing")} className='flex md:hidden text-2xl text-yellow cursor-pointer' />}
+                {task?.status === "Doing" && <MdDone onClick={() => changeStatus("Done")} className='flex md:hidden text-2xl text-green cursor-pointer' />}
+                <MdEdit onClick={() => setOpen(true)} className='text-xl cursor-pointer text-blue' />
+                <MdDelete onClick={handleDelete} className='text-xl cursor-pointer text-red' />
               </div>}
             </Card>
           </div>
