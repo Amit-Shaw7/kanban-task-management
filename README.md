@@ -43,6 +43,8 @@
   <a href="#license">License</a>
 </p>
 
+## Preview
+
 ![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693977564/managetScreenRecordingFinal_qljspy.gif)
 
 ## Screenshots
