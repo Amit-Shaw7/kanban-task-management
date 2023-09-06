@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { MdDelete, MdDone, MdEdit, MdStopCircle, MdUpdate } from "react-icons/md";
+import { MdDelete, MdDone, MdEdit, MdStopCircle, MdUpdate } from 'react-icons/md';
 import Card from './Card';
 import Modal from './Modal';
 import { useDispatch } from 'react-redux';
 import { changeTaskStatusForMobile, deleteTask } from '../store/actions/TaskActions';
 import { Draggable } from 'react-beautiful-dnd';
-import { useSelector } from 'react-redux';
 
 const Task = ({ index, task }) => {
-  const { todo, doing, done } = useSelector(state => state.task);
   const dispatch = useDispatch();
   const [showAcion, setShowAcion] = useState(false);
   const [open, setOpen] = useState(false);
@@ -57,11 +55,11 @@ const Task = ({ index, task }) => {
                 </div>
               </div>
               {showAcion && <div className='flex  absolute top-2 right-1 gap-2'>
-                {task?.status === "Done" && <MdStopCircle onClick={() => changeStatus("Todo")} className='flex md:hidden text-2xl text-red cursor-pointer' />}
-                {task?.status === "Todo" && <MdUpdate onClick={() => changeStatus("Doing")} className='flex md:hidden text-2xl text-yellow cursor-pointer' />}
-                {task?.status === "Doing" && <MdDone onClick={() => changeStatus("Done")} className='flex md:hidden text-2xl text-green cursor-pointer' />}
-                <MdEdit onClick={() => setOpen(true)} className='text-xl cursor-pointer text-blue' />
-                <MdDelete onClick={handleDelete} className='text-xl cursor-pointer text-red' />
+                {task?.status === 'Done' && <MdStopCircle onClick={() => changeStatus('Todo')} className='flex md:hidden text-2xl text-red cursor-pointer' />}
+                {task?.status === 'Todo' && <MdUpdate onClick={() => changeStatus('Doing')} className='flex md:hidden text-2xl text-yellow cursor-pointer' />}
+                {task?.status === 'Doing' && <MdDone onClick={() => changeStatus('Done')} className='flex md:hidden text-2xl text-green cursor-pointer' />}
+                <MdEdit onClick={() => setOpen(true)} className='text-2xl cursor-pointer text-blue' />
+                <MdDelete onClick={handleDelete} className='text-2xl cursor-pointer text-red' />
               </div>}
             </Card>
           </div>
@@ -70,7 +68,7 @@ const Task = ({ index, task }) => {
 
       <Modal
         task={task}
-        type="edit"
+        type='edit'
         open={open}
         handleClose={handleClose}
       />
