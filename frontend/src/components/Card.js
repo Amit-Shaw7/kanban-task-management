@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Card = ({ children, p , width }) => {
   return (
@@ -8,4 +8,4 @@ const Card = ({ children, p , width }) => {
   )
 }
 
-export default Card
+export default Card;

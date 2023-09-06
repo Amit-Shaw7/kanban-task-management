@@ -5,7 +5,7 @@ const initialState = {
     todo: null,
     doing: null,
     done: null
-}
+};
 
 export const TaskReducer = createReducer(initialState, {
 
@@ -53,7 +53,7 @@ export const TaskReducer = createReducer(initialState, {
     },
     FETCH_DOING_SUCCESS: (state, action) => {
         state.loading = false;
-        state.doing = action.payload
+        state.doing = action.payload;
     },
 
     FETCH_DONE_REQUEST: (state) => {
@@ -61,7 +61,7 @@ export const TaskReducer = createReducer(initialState, {
     },
     FETCH_DONE_SUCCESS: (state, action) => {
         state.loading = false;
-        state.done = action.payload
+        state.done = action.payload;
     },
 
     UPDATE_TASKS: (state, action) => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Avatar = ({onClick ,  name }) => {
     return (
@@ -8,4 +8,4 @@ const Avatar = ({onClick ,  name }) => {
     )
 }
 
-export default Avatar
+export default Avatar;

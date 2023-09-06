@@ -1,6 +1,6 @@
-import React from 'react'
-import Card from './Card'
-import { useDispatch } from 'react-redux'
+import React from 'react';
+import Card from './Card';
+import { useDispatch } from 'react-redux';
 import { changeTaskType } from '../store/actions/AppAction';
 import { useSelector } from 'react-redux';
 
@@ -23,4 +23,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default Navbar;

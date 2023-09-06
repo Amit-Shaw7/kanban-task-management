@@ -1,6 +1,6 @@
-import React from 'react'
-import { MdClose } from 'react-icons/md'
-import TaskDetails from './TaskDetails'
+import React from 'react';
+import { MdClose } from 'react-icons/md';
+import TaskDetails from './TaskDetails';
 
 const TaskDetailsModal = ({ open, handleClose }) => {
     return (
@@ -25,4 +25,4 @@ const TaskDetailsModal = ({ open, handleClose }) => {
     )
 }
 
-export default TaskDetailsModal
+export default TaskDetailsModal;

@@ -23,4 +23,4 @@ export default function Modal({task, open, handleClose, type }) {
             )}
         </>
     );
-}
+};

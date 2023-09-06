@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdDelete, MdDone, MdEdit, MdMoreVert, MdStopCircle, MdUpdate } from "react-icons/md";
+import { MdDelete, MdDone, MdEdit, MdStopCircle, MdUpdate } from "react-icons/md";
 import Card from './Card';
 import Modal from './Modal';
 import { useDispatch } from 'react-redux';
@@ -20,11 +20,11 @@ const Task = ({ index, task }) => {
   const changeStatus = (toStatus) => {
     let index;
     if (toStatus === "Todo") {
-      index = todo.length;
+      index = todo[todo.length-1].index;
     } else if (toStatus === "Doing") {
-      index = doing.length;
+      index = doing[doing.length-1].inex;
     } else {
-      index = done.length;
+      index = done[done.length].index;
     }
     const data = {
       toStatus,
@@ -38,11 +38,11 @@ const Task = ({ index, task }) => {
       index: index
     }
     dispatch(changeTaskStatusForMobile(data));
-  }
+  };
 
   const handleDelete = () => {
     dispatch(deleteTask(task?._id));
-  }
+  };
 
   return (
     <>
@@ -88,4 +88,4 @@ const Task = ({ index, task }) => {
   )
 }
 
-export default Task
+export default Task;

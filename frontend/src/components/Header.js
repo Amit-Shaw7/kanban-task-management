@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import AccountPopover from './AccountPopover';
 import Avatar from './Avatar';
 import { MdLightMode, MdOutlineLightMode } from 'react-icons/md';
@@ -8,7 +8,7 @@ const Header = ({ mode, handleDarkMode, name }) => {
     const [open, setOpen] = useState(false);
     const handleClose = () => {
         setOpen(false);
-    }
+    };
     return (
         <nav className='dark:bg-dark bg-light fixed h-[60px] flex items-center w-[100vw] top-0 shadow-xl'>
             <div className='w-full relative flex flex-row items-center justify-between px-10 '>

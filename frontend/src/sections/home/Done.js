@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Done = () => {
   return (
@@ -6,4 +6,4 @@ const Done = () => {
   )
 }
 
-export default Done
+export default Done;

@@ -17,7 +17,7 @@ export const signup = (data, navigate) => async (dispatch) => {
             toast.success("Signup Succesfull");
         }
     }
-}
+};
 
 export const login = (data, navigate) => async (dispatch) => {
     dispatch({ type: "START_LOADER" });
@@ -36,24 +36,26 @@ export const login = (data, navigate) => async (dispatch) => {
             navigate("/");
         }
     }
-}
+};
 
 export const logout = (navigate) => async (dispatch) => {
     const url = `/auth/logout`;
     let response = {};
+    toast.loading("Logging out");
     try {
         response = await instance.get(url);
+        toast.dismiss();
     } catch (error) {
-        toast.success("Something wrong please try again");
+        toast.error("Something wrong please try again");
     } finally {
         if (response.status === 200) {
-            toast.dismiss();
             dispatch({ type: "LOGOUT_SUCCESS" });
             toast.success("Logged out successfully");
             navigate("/login");
         }
     }
-}
+};
+
 export const loadUser = (navigate) => async (dispatch) => {
     const url = `/user/profile`;
     let response = {};
@@ -68,4 +70,4 @@ export const loadUser = (navigate) => async (dispatch) => {
             navigate("/login");
         }
     }
-}
+};

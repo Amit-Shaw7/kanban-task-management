@@ -3,16 +3,14 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../store/actions/UserActions';
 import Card from './Card';
-import { toast } from 'react-hot-toast';
 
 const AccountPopover = ({ open, handleClose }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogout = async () => {
-        toast.loading("Logging out");
-        await dispatch(logout(navigate));
+        dispatch(logout(navigate));
         handleClose();
-    }
+    };
     return (
         <>
             {
@@ -27,4 +25,4 @@ const AccountPopover = ({ open, handleClose }) => {
     )
 }
 
-export default AccountPopover
+export default AccountPopover;

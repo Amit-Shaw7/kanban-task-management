@@ -1,5 +1,5 @@
-import React from 'react'
-import Card from './Card'
+import React from 'react';
+import Card from './Card';
 
 const TaskSkelleton = () => {
     return (
@@ -16,4 +16,4 @@ const TaskSkelleton = () => {
     )
 }
 
-export default TaskSkelleton
+export default TaskSkelleton;

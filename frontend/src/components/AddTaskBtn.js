@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import Button from './Button'
-import { RiAddLine } from "react-icons/ri"
-import Modal from './Modal'
+import React, { useState } from 'react';
+import Button from './Button';
+import { RiAddLine } from "react-icons/ri";
+import Modal from './Modal';
 
 const AddTaskBtn = () => {
     const [open, setOpen] = useState(false);
     const handleClose = () => {
         setOpen(false);
-    }
-
+    };
     return (
         <>
             <div className='fixed top-[90%] right-5'>
@@ -19,4 +18,4 @@ const AddTaskBtn = () => {
     )
 }
 
-export default AddTaskBtn
+export default AddTaskBtn;

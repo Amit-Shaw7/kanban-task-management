@@ -1,5 +1,5 @@
-import React from 'react'
-import Task from './Task'
+import React from 'react';
+import Task from './Task';
 import { Droppable } from 'react-beautiful-dnd';
 import TaskSkelleton from './TaskSkelleton';
 
@@ -30,4 +30,4 @@ const TasksContainer = ({ status, tasks }) => {
     )
 }
 
-export default TasksContainer
+export default TasksContainer;

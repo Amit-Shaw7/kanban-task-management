@@ -8,8 +8,14 @@ export const getTodo = () => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        console.log(error.response.data);
-        toast.error(error?.response?.data?.msg);
+        console.log(error.response?.data);
+        if (error.response.data.msg === "UNAUTHORIZED") {
+            toast.error("Please login");
+        } else if (error?.response?.data?.msg) {
+            toast.error(error?.response?.data?.msg);
+        } else {
+            toast.error("Please wait for 15 seconds to let the server start as it is hosted in a free server");
+        }
     } finally {
         if (response.status === 200) {
             dispatch({ type: "FETCH_TODO_SUCCESS", payload: response?.data?.tasks });
@@ -24,7 +30,9 @@ export const getDoing = () => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
+        if (error.response?.data.msg && error.response?.data.msg !== "UNAUTHORIZED") {
+            toast.error(error?.response?.data?.msg);
+        }
     } finally {
         if (response.status === 200) {
             dispatch({ type: "FETCH_DOING_SUCCESS", payload: response?.data?.tasks });
@@ -39,13 +47,15 @@ export const getDone = () => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
+        if (error.response?.data.msg && error.response?.data.msg !== "UNAUTHORIZED") {
+            toast.error(error?.response?.data?.msg);
+        }
     } finally {
         if (response.status === 200) {
             dispatch({ type: "FETCH_DONE_SUCCESS", payload: response?.data?.tasks });
         }
     }
-}
+};
 
 export const addTask = (data) => async (dispatch) => {
     const url = `/task/add`;
@@ -63,7 +73,7 @@ export const addTask = (data) => async (dispatch) => {
             dispatch({ type: "ADD_TASK_SUCCESS", payload: response?.data?.task });
         }
     }
-}
+};
 
 export const editTask = (data, id, status) => async (dispatch) => {
     const url = `/task/${id}`;
@@ -76,8 +86,9 @@ export const editTask = (data, id, status) => async (dispatch) => {
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+        window.location.reload();
     }
-}
+};
 
 export const deleteTask = (id) => async (dispatch) => {
     const url = `/task/${id}`;
@@ -90,32 +101,30 @@ export const deleteTask = (id) => async (dispatch) => {
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
+        window.location.reload();
     }
-}
+};
 
 export const changeTaskStatus = (data) => async (dispatch) => {
     const url = `/task/changeStatus`;
     let response = {};
-
     dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
     toast.success(`Moved to ${data.toStatus}`);
-
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.draggedTaskId,
         index: data.index
     }
-
     try {
         response = await instance.patch(url, dataToSend);
+        if (response.status !== 200) {
+            window.location.reload();
+        }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
-    } finally {
-        if (response.status === 200) {
-            toast.dismiss()
-        }
+        window.location.reload();
     }
-}
+};
 
 export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     const url = `/task/changeStatus`;
@@ -139,14 +148,15 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     }
     try {
         response = await instance.patch(url, dataToSend);
-    } catch (error) {
-        toast.error(error?.response?.data?.msg);
-    } finally {
         if (response.status !== 200) {
             window.location.reload();
         }
+    } catch (error) {
+        toast.error(error?.response?.data?.msg);
+        window.location.reload();
+
     }
-}
+};
 
 export const swapTaskIndex = (data) => async (dispatch) => {
     const url = `/task/swap`;
@@ -168,4 +178,4 @@ export const swapTaskIndex = (data) => async (dispatch) => {
             window.location.reload();
         }
     }
-}
+};

@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { UserReducer } from './reducers/UserReducer'
-import { TaskReducer } from './reducers/TaskReducers'
-import { AppReducer } from './reducers/AppReducer'
+import { configureStore } from '@reduxjs/toolkit';
+import { UserReducer } from './reducers/UserReducer';
+import { TaskReducer } from './reducers/TaskReducers';
+import { AppReducer } from './reducers/AppReducer';
 
 export const Store = configureStore({
   reducer: {
@@ -9,4 +9,4 @@ export const Store = configureStore({
     task : TaskReducer,
     app : AppReducer
   },
-})
+});
