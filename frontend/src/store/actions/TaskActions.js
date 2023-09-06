@@ -130,6 +130,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "DELETE_TASK_SUCCESS", payload: data.task?._id });
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
+    toast.success(`Moved to ${data.toStatus}`);
 
     const dataToSend = {
         toStatus: data.toStatus,
@@ -141,9 +142,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     } catch (error) {
         toast.error(error?.response?.data?.msg);
     } finally {
-        if (response.status === 200) {
-            toast.success(`Moved to ${data.toStatus}`);
-        } else {
+        if (response.status !== 200) {
             window.location.reload();
         }
     }
@@ -159,17 +158,14 @@ export const swapTaskIndex = (data) => async (dispatch) => {
         draggedId: data.draggedId,
         droppedId: data.droppedId,
     }
-
-    toast.loading("Re-arranging tasks");
+    toast.success("Re-arranged tasks");
     try {
         response = await instance.patch(url, dataToSend);
     } catch (error) {
         toast.success(error?.response?.data?.msg);
     } finally {
-        if (response.status === 200) {
-            // toast.success("Swapped");
-            toast.dismiss();
-            toast.success("Re-arranged tasks");
+        if (response.status !== 200) {
+            window.location.reload();
         }
     }
 }
