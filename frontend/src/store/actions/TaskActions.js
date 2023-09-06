@@ -150,7 +150,7 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     try {
         response = await instance.patch(url, dataToSend);
         if (response.status !== 200) {
-            // window.location.reload();
+            window.location.reload();
         }
     } catch (error) {
         if(error?.response?.data?.msg){
@@ -178,7 +178,7 @@ export const swapTaskIndex = (data) => async (dispatch) => {
         toast.success(error?.response?.data?.msg);
     } finally {
         if (response.status !== 200) {
-            // window.location.reload();
+            window.location.reload();
         }
     }
 };
