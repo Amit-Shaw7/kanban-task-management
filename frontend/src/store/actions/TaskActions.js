@@ -121,8 +121,10 @@ export const changeTaskStatus = (data) => async (dispatch) => {
             // window.location.reload();
         }
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
-        // window.location.reload();
+        if(error?.response?.data?.msg){
+            toast.error(error?.response?.data?.msg);
+        }
+        window.location.reload();
     }
 };
 
@@ -151,8 +153,10 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
             // window.location.reload();
         }
     } catch (error) {
-        toast.error(error?.response?.data?.msg);
-        // window.location.reload();
+        if(error?.response?.data?.msg){
+            toast.error(error?.response?.data?.msg);
+        }
+        window.location.reload();
 
     }
 };
