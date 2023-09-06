@@ -12,8 +12,12 @@ const changeTaskStatus = asyncError(async (req, res, next) => {
     if (!taskDragged) {
         return next(new ErrorHandler("Task not found", 404));
     }
+    if(tasks.length === 0){
+        taskDragged.index = 0;
+    }else{
+        taskDragged.index =  tasks[tasks.length - 1].index + 1;
+    }
     taskDragged.status = toStatus;
-    taskDragged.index =  tasks[tasks.length - 1].index + 1;
 
     await taskDragged.save();
 
