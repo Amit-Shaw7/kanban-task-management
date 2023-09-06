@@ -10,28 +10,51 @@
 <h4 align="center">A task management tool built using MERN Stack</h4>
 
 <p align="center">
-  <a href="https://badge.fury.io/js/electron-markdownify">
-    <img src="https://badge.fury.io/js/electron-markdownify.svg"
-         alt="Gitter">
+  <a href="https://react.dev/">
+    <img width="20px" src="https://cdn.freebiesupply.com/logos/large/2x/react-1-logo-svg-vector.svg" alt="React">
   </a>
-  <a href="https://gitter.im/amitmerchant1990/electron-markdownify"><img src="https://badges.gitter.im/amitmerchant1990/electron-markdownify.svg"></a>
-  <a href="https://saythanks.io/to/bullredeyes@gmail.com">
-      <img src="https://img.shields.io/badge/SayThanks.io-%E2%98%BC-1EAEDB.svg">
+  
+  <a href="https://nodejs.org/en">
+  <img width="20px" src="https://cdn.freebiesupply.com/logos/large/2x/nodejs-icon-logo-svg-vector.svg" alt="Node js">
   </a>
-  <a href="https://www.paypal.me/AmitMerchant">
-    <img src="https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&amp;style=flat">
+  
+  <a href="https://www.mongodb.com/">
+      <img height="20px" src="https://1000logos.net/wp-content/uploads/2020/08/MongoDB-Emblem-640x400.jpg" alt="mongo db">
+  </a>
+  
+  <a href="https://expressjs.com/">
+    <img height="20px" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-icon.svg" alt="express js">
+  </a>
+  
+   <a href="https://tailwindcss.com/">
+    <img height="20px" width="30px" src="https://w7.pngwing.com/pngs/293/485/png-transparent-tailwind-css-hd-logo.png">
+  </a>
+  
+   <a href="https://jwt.io/">
+    <img height="20px" src="https://jwt.io/img/pic_logo.svg" alt="express js">
   </a>
 </p>
 
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
+  <a href="#download">Download</a> •
   <a href="#credits">Credits</a> •
   <a href="#related">Related</a> •
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://raw.githubusercontent.com/amitmerchant1990/electron-markdownify/master/app/img/markdownify.gif)
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693977564/managetScreenRecordingFinal_qljspy.gif)
+
+## Screenshots
+
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693944696/LoginPageScreenshot_zrsyzm.png)
+
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693944698/AddingTaskScreenshot_ly48ps.png)
+
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693945359/HomepageScreenshot_aou1wn.jpg)
+
+![screenshot](https://res.cloudinary.com/amitkumarshaw/image/upload/v1693945222/lightmodeScreenshot_a2fvdt.jpg)
 
 ## Key Features
 
@@ -46,7 +69,7 @@
 * Fully responsive.
 
 
-## How To Use
+## How to run in your system
 
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
@@ -97,6 +120,18 @@ $ cd frontend
 $ npm run start
 ```
 
+## How to use
+
+- Please wait for 15 second after the first visit to this app beacuse it's backend is hosted in a free server and if no request is made in last 15 minutes the company switch the server off till the next request and when a new request comes it takes about 15 sec to give first response.
+
+
+- Signup with an email , name and password. After succesfull signup you will be redirected to login page.
+
+- Login with that email and password. After succesfull login you will be redirected to home page where you can add task.
+
+- Add a task using the + sign button in the bottom right of your screen. You can edit task , delete task if your want to work on that task drag it from todo to the doing area and when task completed drag it from doing area and drop in the done area.
+
+- This way you can use it and don't forget to logout when you leave 😄
 
 ## Credits
 
