@@ -8,6 +8,7 @@ export const getTodo = () => async (dispatch) => {
     try {
         response = await instance.get(url);
     } catch (error) {
+        console.log(error.response.data);
         toast.error(error?.response?.data?.msg);
     } finally {
         if (response.status === 200) {
@@ -58,6 +59,7 @@ export const addTask = (data) => async (dispatch) => {
     } finally {
         if (response.status === 200) {
             toast.dismiss();
+            toast.success("Added in todo");
             dispatch({ type: "ADD_TASK_SUCCESS", payload: response?.data?.task });
         }
     }
@@ -129,8 +131,6 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         dispatch({ type: "ADD_TASK_TO_TODO", payload: data.task });
     }
 
-    toast.loading(`Moving to ${data.toStatus}`);
-
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.task._id,
@@ -142,7 +142,6 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
         toast.error(error?.response?.data?.msg);
     } finally {
         if (response.status === 200) {
-            toast.dismiss();
             toast.success(`Moved to ${data.toStatus}`);
         } else {
             window.location.reload();

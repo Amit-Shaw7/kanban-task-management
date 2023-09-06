@@ -20,20 +20,17 @@ export const signup = (data, navigate) => async (dispatch) => {
 }
 
 export const login = (data, navigate) => async (dispatch) => {
-    // setLoading(true);
     dispatch({ type: "START_LOADER" });
     const url = `/auth/login`;
     let response = {};
     try {
         response = await instance.post(url, data);
     } catch (error) {
-        // setLoading(false);
         dispatch({ type: "STOP_LOADER" });
         toast.error(error?.response?.data?.msg?.split("_").join(" "));
     } finally {
         if (response.status === 200) {
             dispatch({ type: "STOP_LOADER" });
-            // setLoading(false);
             toast.success("Login successfull");
             dispatch({ type: "LOGIN_SUCCESS", payload: response?.data?.user });
             navigate("/");

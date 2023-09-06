@@ -132,7 +132,7 @@ const Home = () => {
     dispatch(getTodo());
     dispatch(getDoing());
     dispatch(getDone());
-  }, [dispatch , taskType]);
+  }, [dispatch]);
 
   return (
     <div className='dark:bg-dark bg-light mt-[60px] h-[100vh] md:h-[91.6vh] overflow-hidden'>
