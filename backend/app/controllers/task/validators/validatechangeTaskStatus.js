@@ -13,13 +13,6 @@ const validateChangeTaskStatus = [
         .isEmpty()
         .withMessage('IS_EMPTY')
         .trim(),
-    check('index')
-        .exists()
-        .withMessage('MISSING')
-        .not()
-        .isEmpty()
-        .withMessage('IS_EMPTY')
-        .trim(),
     check('draggedTaskId')
         .exists()
         .withMessage('MISSING')

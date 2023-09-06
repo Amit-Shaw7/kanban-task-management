@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Board from '../components/Board';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { changeTaskStatus, getDoing, getDone, getTodo, swapTaskIndex } from '../
 import { DragDropContext } from 'react-beautiful-dnd';
 import Navbar from '../components/Navbar';
 import AddTaskBtn from '../components/AddTaskBtn';
+import useResponsive from '../utils/useResponsive';
 
 const checkLogin = async (dispatch, navigate) => {
   dispatch(loadUser(navigate));
@@ -18,13 +19,13 @@ const Home = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const displaySize = useResponsive();
 
   const hanleDragEndForDifferentStatus = (source, destination) => {
     let add;
     let active = [...todo];
     let running = [...doing];
     let completed = [...done];
-    let index;
 
     if (source.droppableId === "Todo") {
       add = active[source.index];
@@ -38,13 +39,10 @@ const Home = () => {
     }
 
     if (destination.droppableId === "Todo") {
-      index = active.length;
       active.splice(destination.index, 0, add);
     } else if (destination.droppableId === "Doing") {
-      index = running.length;
       running.splice(destination.index, 0, add);
     } else {
-      index = completed.length;
       completed.splice(destination.index, 0, add);
     }
 
@@ -56,7 +54,6 @@ const Home = () => {
       },
       toStatus: destination.droppableId,
       draggedTaskId: add._id,
-      index
     }
     dispatch(changeTaskStatus(data))
   };
@@ -144,10 +141,10 @@ const Home = () => {
       <Navbar />
       <DragDropContext onDragEnd={handleDragEnd}>
         {
-          window.innerWidth > 768
-
+          displaySize > 768
+ 
             ?
-            <div className='grid grid-cols-3 py-2 px-12 w-full'>
+            <div className='hidden md:grid grid-cols-3 py-2 px-12 w-full'>
               <Board tasks={todo} status="Todo" color="red" />
 
               <Board tasks={doing} status="Doing" color="yellow" />

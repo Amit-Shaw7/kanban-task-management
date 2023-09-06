@@ -9,7 +9,7 @@ export const getTodo = () => async (dispatch) => {
         response = await instance.get(url);
     } catch (error) {
         console.log(error.response?.data);
-        if (error.response.data.msg === "UNAUTHORIZED") {
+        if (error.response?.data.msg === "UNAUTHORIZED") {
             toast.error("Please login");
         } else if (error?.response?.data?.msg) {
             toast.error(error?.response?.data?.msg);
@@ -106,6 +106,7 @@ export const deleteTask = (id) => async (dispatch) => {
 };
 
 export const changeTaskStatus = (data) => async (dispatch) => {
+    console.log(data);
     const url = `/task/changeStatus`;
     let response = {};
     dispatch({ type: "UPDATE_TASKS", payload: data.tasks });
@@ -113,16 +114,15 @@ export const changeTaskStatus = (data) => async (dispatch) => {
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.draggedTaskId,
-        index: data.index
     }
     try {
         response = await instance.patch(url, dataToSend);
         if (response.status !== 200) {
-            window.location.reload();
+            // window.location.reload();
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
-        window.location.reload();
+        // window.location.reload();
     }
 };
 
@@ -144,16 +144,15 @@ export const changeTaskStatusForMobile = (data) => async (dispatch) => {
     const dataToSend = {
         toStatus: data.toStatus,
         draggedTaskId: data.task._id,
-        index: data.index
     }
     try {
         response = await instance.patch(url, dataToSend);
         if (response.status !== 200) {
-            window.location.reload();
+            // window.location.reload();
         }
     } catch (error) {
         toast.error(error?.response?.data?.msg);
-        window.location.reload();
+        // window.location.reload();
 
     }
 };
@@ -175,7 +174,7 @@ export const swapTaskIndex = (data) => async (dispatch) => {
         toast.success(error?.response?.data?.msg);
     } finally {
         if (response.status !== 200) {
-            window.location.reload();
+            // window.location.reload();
         }
     }
 };
