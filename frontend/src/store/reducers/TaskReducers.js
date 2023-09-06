@@ -13,26 +13,23 @@ export const TaskReducer = createReducer(initialState, {
         state.todo = [...state.todo, action.payload];
     },
     EDIT_TASK_SUCCESS: (state, action) => {
-        if (action.payload.status === "Todo") {
-            for (let i = 0; i < state.todo.length; i++) {
-                if (state.todo[i]._id === action.payload.id) {
-                    state.todo[i].title = action.payload.data.title;
-                    state.todo[i].description = action.payload.data.description;
-                }
+
+        for (let i = 0; i < state.todo.length; i++) {
+            if (state.todo[i]._id === action.payload.id) {
+                state.todo[i].title = action.payload.data.title;
+                state.todo[i].description = action.payload.data.description;
             }
-        } else if (action.payload.status === "Doing") {
-            for (let i = 0; i < state.doing.length; i++) {
-                if (state.doing[i]._id === action.payload.id) {
-                    state.doing[i].title = action.payload.data.title;
-                    state.doing[i].description = action.payload.data.description;
-                }
+        }
+        for (let i = 0; i < state.doing.length; i++) {
+            if (state.doing[i]._id === action.payload.id) {
+                state.doing[i].title = action.payload.data.title;
+                state.doing[i].description = action.payload.data.description;
             }
-        } else {
-            for (let i = 0; i < state.done.length; i++) {
-                if (state.done[i]._id === action.payload.id) {
-                    state.done[i].title = action.payload.data.title;
-                    state.done[i].description = action.payload.data.description;
-                }
+        }
+        for (let i = 0; i < state.done.length; i++) {
+            if (state.done[i]._id === action.payload.id) {
+                state.done[i].title = action.payload.data.title;
+                state.done[i].description = action.payload.data.description;
             }
         }
     },
