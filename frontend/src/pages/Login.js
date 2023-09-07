@@ -26,6 +26,15 @@ export default function Login() {
     dispatch(login(data, navigate));
   };
 
+  const guestLogin = () => {
+    const email = "guest@gmail.com";
+    const password = "123456";
+    const data = {
+      email, password
+    };
+    dispatch(login(data, navigate));
+  }
+
   return (
     <>
       {
@@ -49,10 +58,12 @@ export default function Login() {
                     <p className='text-red text-xs'>{errors.password?.message}</p>
                   </div>
 
-                  <Button fullWidth={true} text='Login' name='login' />
+                  <Button fullWidth={true} text='Login' type="submit" name='login' />
+
                   <p className='text-black dark:text-white text-sm text-center'>New user ?
                     <Link to='/signup' className='underline text-green'>&nbsp; Signup</Link>
                   </p>
+                  <Button onClickFn={guestLogin} fullWidth={true} text='Login' type="button" name='login' />
                 </form>
               </Card>
             </div>
