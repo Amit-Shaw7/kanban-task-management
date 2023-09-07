@@ -63,7 +63,7 @@ export default function Login() {
                   <p className='text-black dark:text-white text-sm text-center'>New user ?
                     <Link to='/signup' className='underline text-green'>&nbsp; Signup</Link>
                   </p>
-                  <Button onClickFn={guestLogin} fullWidth={true} text='Login' type="button" name='login' />
+                  <Button onClickFn={guestLogin} fullWidth={true} text='Login as guest' type="button" name='login' />
                 </form>
               </Card>
             </div>
